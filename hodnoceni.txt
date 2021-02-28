@@ -1,4 +1,4 @@
-xorsza01 100 (dokumentácia, profiling)
-xgabri18 100 (testy, inštalátor)
+xorsza01 100 (doxygen, dokumentácia, profiling)
+xgabri18 100 (makefile, testy, inštalátor)
 xjarol06 100 (základ GUI a základne matematické operácie)
 xvlkja07 100 (pokročilé matematické operácie)
