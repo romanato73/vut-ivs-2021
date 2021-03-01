@@ -1,7 +1,5 @@
 import unittest
-
-
-from .. import math as m
+import mathstuck.math as m
 
 
 class TestAdvancedOperations(unittest.TestCase):
