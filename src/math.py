@@ -21,7 +21,7 @@ def div(a, b):
     pass
 
 
-def multiplication(a, b):
+def mul(a, b):
     """The function returns the value of a multiplied by b
        """
     pass
