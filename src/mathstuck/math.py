@@ -63,9 +63,9 @@ def fact(x):
     if x == 0:
         return 0
 
-    k = n
+    k = x
     for i in range(100):
-        k = ((n - 1) * (k / n)) + (x / (n * (k ** (n - 1))))
+        k = ((x - 1) * (k / x)) + (x / (x * (k ** (x - 1))))
 
     return k
 
