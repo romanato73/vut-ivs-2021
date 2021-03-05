@@ -73,10 +73,23 @@ def fact(x):
 def cos(x):
     """The function returns cosinus of x
        """
-    pass
+    xold = x
+    x = 0
+    minus = 1
+    for i in range(0, 2,200):
+        x += minus * ((xold ** i) / fact(i))
+        minus *= -1
+
+    return x
 
 
 def sin(x):
     """The function returns sinus of x
        """
-    pass
+    xold = x
+    minus = -1
+    for i in range(3, 200, 2):
+        x += minus * ((xold ** i) / fact(i))
+        minus *= -1
+
+    return x
