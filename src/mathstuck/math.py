@@ -88,7 +88,7 @@ def sin(x):
        """
     xold = x
     minus = -1
-    for i in range(3, 200, 2):
+    for i in range(3, 2,200):
         x += minus * ((xold ** i) / fact(i))
         minus *= -1
 
