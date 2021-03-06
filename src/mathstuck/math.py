@@ -56,28 +56,23 @@ def sqrt(x, n):
 def fact(x):
     """The function returns factorial of x
        """
-    if x < 0:
-        ValueError("sqrtLessThanZero")
-        return
+    res = 1
+    for i in range(1, x + 1):
+        res *= i
 
-    if x == 0:
-        return 0
-
-    k = x
-    for i in range(100):
-        k = ((x - 1) * (k / x)) + (x / (x * (k ** (x - 1))))
-
-    return k
+    return res
 
 
 def cos(x):
     """The function returns cosinus of x
        """
-    xold = x
-    x = 0
-    minus = 1
-    for i in range(0, 2,200):
-        x += minus * ((xold ** i) / fact(i))
+    xrad = x / 180 * pi()
+    x= 1
+    minus = -1
+    for i in range(2, 150, 2):
+        factr = fact(i)
+        heh = (xrad ** i) / factr
+        x += minus * heh
         minus *= -1
 
     return x
@@ -86,10 +81,24 @@ def cos(x):
 def sin(x):
     """The function returns sinus of x
        """
-    xold = x
+    xrad = x / 180 * pi()
+    x= xrad
     minus = -1
-    for i in range(3, 2,200):
-        x += minus * ((xold ** i) / fact(i))
+    for i in range(3, 150, 2):
+        factr = fact(i)
+        heh = (xrad ** i) / factr
+        x += minus * heh
         minus *= -1
 
     return x
+
+
+def pi():
+    pi = 3
+    minus = 1
+    for i in range (2, 1000, 2):
+        div = i* (i+1) * (i+2)
+        pi += minus * 4 / div
+        minus *= -1
+
+    return pi
