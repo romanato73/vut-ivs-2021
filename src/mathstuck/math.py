@@ -39,7 +39,7 @@ def sqrt(x, n):
     """the function returns the nth root of the x value
        """
     if x < 0:
-        raise  ValueError("sqrtLessThanZero")
+        raise ValueError("sqrtLessThanZero")
 
     if x == 0:
         return 0
@@ -104,18 +104,21 @@ def pi():
 
     return pi
 
-
 def cos(x):
     """The function returns cosinus of x
        """
     xrad = x / 180 * pi()
-    x= 1
+    x = 1
     minus = -1
     for i in range(2, 150, 2):
         factr = fact(i)
         heh = (xrad ** i) / factr
         x += minus * heh
         minus *= -1
+
+    x = round(x, 8)
+    if x < 1e-8 and x > -1e-8:
+        return 0
 
     return x
 
@@ -124,7 +127,7 @@ def sin(x):
     """The function returns sinus of x
        """
     xrad = x / 180 * pi()
-    x= xrad
+    x = xrad
     minus = -1
     for i in range(3, 150, 2):
         factr = fact(i)
@@ -132,14 +135,17 @@ def sin(x):
         x += minus * heh
         minus *= -1
 
+    if x < 1e-8 and x > -1e-8:
+        return 0
+
     return x
 
 
 def pi():
     pi = 3
     minus = 1
-    for i in range (2, 1000, 2):
-        div = i* (i+1) * (i+2)
+    for i in range(2, 1000, 2):
+        div = i * (i + 1) * (i + 2)
         pi += minus * 4 / div
         minus *= -1
 
