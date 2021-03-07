@@ -58,10 +58,15 @@ def fact(x):
     """The function returns factorial of x
        """
     res = 1
+    minus = 1
+    if x < 0:
+        minus = -1
+        x *= -1
+
     for i in range(1, x + 1):
         res *= i
 
-    return res
+    return res * minus
 
 
 def cos(x):
@@ -103,6 +108,7 @@ def pi():
         minus *= -1
 
     return pi
+
 
 def cos(x):
     """The function returns cosinus of x
@@ -150,3 +156,4 @@ def pi():
         minus *= -1
 
     return pi
+
