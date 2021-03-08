@@ -1,0 +1,14 @@
+#graphicsView {
+    background-color: #1a1a1a;
+    border: none;
+}
+
+#gridWidget {
+    background-color: #212121;
+}
+
+QPushButton {
+    background-color: #212121;
+    color: #0180FF;
+    border: none;
+}
