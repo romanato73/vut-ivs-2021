@@ -1,0 +1,45 @@
+Deadlines:
+    • 28.02.2021 - Project plan and assign tasks
+    • 01.03.2021 - Unit tests for base and advanced operations
+    • 06.03.2021 - Math library
+    • 10.03.2021 - GUI interface
+    • 01.04.2021 - GUI implementation
+    • 15.04.2021 - Doxygen Documentation, Mockup, Debugging
+    • 18.04.2021 - Profiling
+    • 25.04.2021 - User documentation, Makefile, ratings, reality
+
+Assigned tasks for project to individual solvers:
+    • xorsza01:
+        - Tests for basic math operations
+        - GUI Design
+        - GUI Implementation
+        - Documentation & User Documentation
+        - Profiling
+        - Mockup
+    • xgabri18:
+        - Tests for advanced math operations
+        - GUI Implementation
+        - Makefile
+        - Installer
+        - Mockup
+    • xjarol06:
+        - GUI Interface
+        - GUI Implementation
+        - Base math operations
+        - User documentation
+        - Mockup
+    • xvlkja07:
+        - GUI Interface
+        - GUI Implementation
+        - Implementation of math library
+        - Advanced math operations
+        - Mockup
+
+Comunication channels:
+    • Discord
+
+VCS and hosting:
+    • VCS: Git
+    • Host: GitHub
+    • Repo: https://github.com/romanato73/vut-ivs-2021
+    • Access: For access to our repo we sent an invitation link for ivskontrola (ivskontrola@gmail.com)

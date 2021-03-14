@@ -25,7 +25,7 @@ class Ui_ivsmath(object):
         font.setWeight(75)
         ivsmath.setFont(font)
         # Added styles
-        with open("assets/master.css", "r") as file:
+        with open("assets/master.qss", "r") as file:
             ivsmath.setStyleSheet(file.read())
         self.gridWidget = QtWidgets.QWidget(ivsmath)
         self.gridWidget.setGeometry(QtCore.QRect(0, 150, 400, 400))
