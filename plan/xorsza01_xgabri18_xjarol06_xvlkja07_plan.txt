@@ -35,7 +35,7 @@ Assigned tasks for project to individual solvers:
         - Advanced math operations
         - Mockup
 
-Comunication channels:
+Communication channels:
     • Discord
 
 VCS and hosting:
