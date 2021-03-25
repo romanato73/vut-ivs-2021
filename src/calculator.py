@@ -18,28 +18,43 @@ class CalculatorWindow(QWidget):
         self.ui = Ui_ivsmath()
         self.ui.setupUi(self)
 
-        # self.ui.pushButton_1.clicked.connect(self.test)
-
         transparentcolor = QColor()
         transparentcolor.setAlpha(0)
         # pen = QPen()
         # pen.setColor(transparentcolor)
 
 
-        deffont = QFont("Sans Serif")
-        deffont.setPixelSize(20)
-        deffont.setFamily("Sans Serif")
+        self.deffont = QFont("Sans Serif")
+        self.deffont.setPixelSize(20)
+        self.deffont.setFamily("Sans Serif")
 
         textformat = QTextCharFormat()
-        textformat.setFont(deffont)
+        textformat.setFont(self.deffont)
         # textformat.setTextOutline(pen)
 
         self.scene = QGraphicsScene()
 
         self.scene.setBackgroundBrush(transparentcolor)
-        self.scene.addText("Hovno" , deffont)
-        self.scene.clearSelection()
-        QGraphicsView(self.scene, self)
+        self.scene.addText(self.__text__ , self.deffont, )
+        gpv = QGraphicsView(self.scene, self)
+        gpv.setMinimumWidth(400)
+        gpv.setAlignment(Qt.AlignLeft)
+
+        self.ui.pushButton_1.clicked.connect(lambda: self.appendText('1'))
+        self.ui.pushButton_2.clicked.connect(lambda: self.appendText('2'))
+        self.ui.pushButton_3.clicked.connect(lambda: self.appendText('3'))
+        self.ui.pushButton_4.clicked.connect(lambda: self.appendText('4'))
+        self.ui.pushButton_5.clicked.connect(lambda: self.appendText('5'))
+        self.ui.pushButton_6.clicked.connect(lambda: self.appendText('6'))
+        self.ui.pushButton_7.clicked.connect(lambda: self.appendText('7'))
+        self.ui.pushButton_8.clicked.connect(lambda: self.appendText('8'))
+        self.ui.pushButton_9.clicked.connect(lambda: self.appendText('9'))
+        self.ui.pushButton_0.clicked.connect(lambda: self.appendText('0'))
+        self.ui.pushButton_add.clicked.connect(lambda: self.appendText('+'))
+        self.ui.pushButton_sub.clicked.connect(lambda: self.appendText('-'))
+        self.ui.pushButton_div.clicked.connect(lambda: self.appendText('*'))
+        self.ui.pushButton_mul.clicked.connect(lambda: self.appendText('/'))
+
 
 
 
@@ -65,23 +80,53 @@ class CalculatorWindow(QWidget):
             self.appendText("9")
         if event.key() == Qt.Key_0:
             self.appendText("0")
+        if event.key() == Qt.Key_Backspace:
+            self.delText()
+        # Nevím jestl je dobrý nápad tady dávat i to delete
+        if (event.key() == Qt.Key_Delete) or (event.key() == Qt.Key_C):
+            self.clearText()
+        if (event.key() == Qt.Key_Comma):
+            # desetiná tečka nevím jak se jmenuje key
+            self.appendText(",")
+        if event.key() == Qt.Key_Plus:
+            self.appendText("+")
+        if event.key() == Qt.Key_Minus:
+            self.appendText("-")
+        if event.key() == Qt.Key_division:
+            self.appendText("/")
+        if event.key() == Qt.Key_multiply:
+            self.appendText("*")
+        if event.key() == Qt.Key_Enter:
+            self.parseText()
+
+        self.scene.clear()
+        self.scene.addText(self.__text__, self.deffont)
+        print(self.__text__)
+
 
     def appendText(self, str:str, sep=''):
         self.__text__ += str
-        if sep == '':
-            self.__text__ += " "
-        QGraphicsView(self.scene, self)
+        self.scene.clear()
+        self.scene.addText(self.__text__, self.deffont)
 
     def clearText(self):
         self.__text__ = ""
+        self.scene.clear()
+        self.scene.addText(self.__text__, self.deffont)
 
     def delText(self):
+        if len(self.__text__) == 0:
+            return
         if len(self.__text__) == 1:
             self.clearText()
-            QGraphicsView(self.scene, self)
             return
-        self.__text__ = self.text[0:-2]
-        QGraphicsView(self.scene, self)
+        self.__text__ = self.__text__[0:-1]
+        self.scene.clear()
+        self.scene.addText(self.__text__, self.deffont)
+
+    def parseText(self):
+        pass
+
 
 
 if __name__ == '__main__':
