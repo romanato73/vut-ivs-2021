@@ -1,21 +1,32 @@
 import sys
-import ui
-from PyQt5 import QtWidgets
+from ui import Ui_ivsmath
+from PyQt5.QtWidgets import QWidget, QApplication
+from PyQt5.Qt import Qt
 
-# Initialize Application
-app = QtWidgets.QApplication(sys.argv)
 
-# Create calculator widget
-calculator = QtWidgets.QWidget()
+class CalculatorWindow(QWidget):
+    def __init__(self):
+        super(CalculatorWindow, self).__init__()
 
-# Interface instance
-interface = ui.Ui_ivsmath()
+        # Set up the user interface from Designer.
+        self.ui = Ui_ivsmath()
+        self.ui.setupUi(self)
 
-# Setup interface with calculator
-interface.setupUi(calculator)
+        self.ui.pushButton_1.clicked.connect(self.test)
 
-# Show calculator
-calculator.show()
 
-# Terminate application
-sys.exit(app.exec_())
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_1:
+            self.prdel()
+
+    def test(self):
+        print("presseeeed")
+
+    def prdel(self):
+        print("prdeel")
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    window = CalculatorWindow()
+    window.show()
+    sys.exit(app.exec_())
