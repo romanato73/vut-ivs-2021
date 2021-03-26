@@ -9,7 +9,6 @@ from PyQt5.QtGui import QPen, QBrush, QFont, QColor, QTextCharFormat
 from PyQt5.Qt import Qt, QColor
 
 
-
 class CalculatorWindow(QWidget):
     def __init__(self):
         super(CalculatorWindow, self).__init__()
@@ -23,7 +22,6 @@ class CalculatorWindow(QWidget):
         # pen = QPen()
         # pen.setColor(transparentcolor)
 
-
         self.deffont = QFont("Sans Serif")
         self.deffont.setPixelSize(20)
         self.deffont.setFamily("Sans Serif")
@@ -35,30 +33,113 @@ class CalculatorWindow(QWidget):
         self.scene = QGraphicsScene()
 
         self.scene.setBackgroundBrush(transparentcolor)
-        self.scene.addText(self.__text__ , self.deffont, )
+        self.scene.addText(self.__text__, self.deffont, )
         gpv = QGraphicsView(self.scene, self)
         gpv.setMinimumWidth(400)
         gpv.setAlignment(Qt.AlignLeft)
 
-        self.ui.pushButton_1.clicked.connect(lambda: self.appendText('1'))
-        self.ui.pushButton_2.clicked.connect(lambda: self.appendText('2'))
-        self.ui.pushButton_3.clicked.connect(lambda: self.appendText('3'))
-        self.ui.pushButton_4.clicked.connect(lambda: self.appendText('4'))
-        self.ui.pushButton_5.clicked.connect(lambda: self.appendText('5'))
-        self.ui.pushButton_6.clicked.connect(lambda: self.appendText('6'))
-        self.ui.pushButton_7.clicked.connect(lambda: self.appendText('7'))
-        self.ui.pushButton_8.clicked.connect(lambda: self.appendText('8'))
-        self.ui.pushButton_9.clicked.connect(lambda: self.appendText('9'))
-        self.ui.pushButton_0.clicked.connect(lambda: self.appendText('0'))
-        self.ui.pushButton_add.clicked.connect(lambda: self.appendText('+'))
-        self.ui.pushButton_sub.clicked.connect(lambda: self.appendText('-'))
-        self.ui.pushButton_div.clicked.connect(lambda: self.appendText('*'))
-        self.ui.pushButton_mul.clicked.connect(lambda: self.appendText('/'))
+        self.Button()
+        self.ui.pushButton_1.clicked.connect(self.button_1)
+        self.ui.pushButton_2.clicked.connect(self.button_2)
+        self.ui.pushButton_3.clicked.connect(self.button_3)
+        self.ui.pushButton_4.clicked.connect(self.button_4)
+        self.ui.pushButton_5.clicked.connect(self.button_5)
+        self.ui.pushButton_6.clicked.connect(self.button_6)
+        self.ui.pushButton_7.clicked.connect(self.button_7)
+        self.ui.pushButton_8.clicked.connect(self.button_8)
+        self.ui.pushButton_9.clicked.connect(self.button_9)
+        self.ui.pushButton_0.clicked.connect(self.button_0)
+        self.ui.pushButton_add.clicked.connect(self.button_add)
+        self.ui.pushButton_sub.clicked.connect(self.button_sub)
+        self.ui.pushButton_div.clicked.connect(self.button_div)
+        self.ui.pushButton_clear.clicked.connect(self.button_clear)
+        self.ui.pushButton_del.clicked.connect(self.button_del)
+        self.ui.pushButton_sin.clicked.connect(self.button_sin)
+        self.ui.pushButton_cos.clicked.connect(self.button_cos)
+        self.ui.pushButton_fact.clicked.connect(self.button_fact)
+        self.ui.pushButton_sqrt.clicked.connect(self.button_sqrt)
+        self.ui.pushButton_pow.clicked.connect(self.button_pow)
+        self.ui.pushButton_pi.clicked.connect(self.button_pi)
+        self.ui.pushButton_eq.clicked.connect(self.button_eq)
+        self.ui.pushButton_comma.clicked.connect(self.button_decimal)
 
+        self.scene.clear()
+        self.scene.addText(self.__text__, self.deffont)
 
+    def button_1(self):
+        pass
 
+    def button_2(self):
+        pass
+
+    def button_3(self):
+        pass
+
+    def button_4(self):
+        pass
+
+    def button_5(self):
+        pass
+
+    def button_6(self):
+        pass
+
+    def button_7(self):
+        pass
+
+    def button_8(self):
+        pass
+
+    def button_9(self):
+        pass
+
+    def button_0(self):
+        pass
+
+    def button_add(self):
+        pass
+
+    def button_sub(self):
+        pass
+
+    def button_div(self):
+        pass
+
+    def button_mul(self):
+        pass
+
+    def button_sin(self):
+        pass
+
+    def button_cos(self):
+        pass
+
+    def button_del(self):
+        pass
+
+    def button_clear(self):
+        pass
+
+    def button_pi(self):
+        pass
+
+    def button_sqrt(self):
+        pass
+
+    def button_fact(self):
+        pass
+
+    def button_decimal(self):
+        pass
+
+    def button_pow(self):
+        pass
+
+    def button_eq(self):
+        pass
 
     __text__ = ""
+
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_1:
             self.appendText("1")
@@ -82,7 +163,6 @@ class CalculatorWindow(QWidget):
             self.appendText("0")
         if event.key() == Qt.Key_Backspace:
             self.delText()
-        # Nevím jestl je dobrý nápad tady dávat i to delete
         if (event.key() == Qt.Key_Delete) or (event.key() == Qt.Key_C):
             self.clearText()
         if (event.key() == Qt.Key_Comma):
@@ -103,16 +183,11 @@ class CalculatorWindow(QWidget):
         self.scene.addText(self.__text__, self.deffont)
         print(self.__text__)
 
-
-    def appendText(self, str:str, sep=''):
+    def appendText(self, str: str):
         self.__text__ += str
-        self.scene.clear()
-        self.scene.addText(self.__text__, self.deffont)
 
     def clearText(self):
         self.__text__ = ""
-        self.scene.clear()
-        self.scene.addText(self.__text__, self.deffont)
 
     def delText(self):
         if len(self.__text__) == 0:
@@ -121,12 +196,9 @@ class CalculatorWindow(QWidget):
             self.clearText()
             return
         self.__text__ = self.__text__[0:-1]
-        self.scene.clear()
-        self.scene.addText(self.__text__, self.deffont)
 
     def parseText(self):
         pass
-
 
 
 if __name__ == '__main__':
