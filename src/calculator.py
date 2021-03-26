@@ -92,9 +92,9 @@ class CalculatorWindow(QWidget):
             self.appendText("+")
         if event.key() == Qt.Key_Minus:
             self.appendText("-")
-        if event.key() == Qt.Key_division:
+        if event.key() == Qt.Key_Slash:
             self.appendText("/")
-        if event.key() == Qt.Key_multiply:
+        if event.key() == Qt.Key_Asterisk:
             self.appendText("*")
         if event.key() == Qt.Key_Enter:
             self.parseText()
