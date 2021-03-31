@@ -72,17 +72,18 @@ class CalculatorWindow(QWidget):
 
     @pyqtSlot()
     def fade(self):
-        self.__fading_button = self.sender()  # enter the "fading button" state
-        self.__fading_button.setWindowOpacity(0.5)
-        self.__fading_button.setStyleSheet("background-color: #1a1a1a")
-        QTimer.singleShot(75, self.unfade)
+        #a = self.findChild(QWidget, self.sender().objectName()) -- takto sa dá tiež získať meno toho sendera XD
+        fading_button = self.sender()
+        fading_button.setWindowOpacity(0.5)
+        fading_button.setStyleSheet("background-color: #1a1a1a")
+        QTimer.singleShot(75, lambda: self.unfade(fading_button))
 
-    def unfade(self):
-        if self.__fading_button is None:
-            return
-        self.__fading_button.setWindowOpacity(1)
-        self.__fading_button.setStyleSheet("")
-        self.__fading_button = None  # exit the "fading button" state
+    @pyqtSlot()
+    def unfade(self, fading_button):
+        fading_button.setWindowOpacity(1)
+        fading_button.setStyleSheet("")
+
+
 
     def renderText(self):
         self.scene.clear()
@@ -91,145 +92,145 @@ class CalculatorWindow(QWidget):
 
     def button_1(self):
         self.appendText("1")
-        self.fade()        
-        self.renderText() 
+        self.fade()
+        self.renderText()
         pass
 
     def button_2(self):
         self.appendText("2")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_3(self):
         self.appendText("3")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_4(self):
         self.appendText("4")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_5(self):
         self.appendText("5")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_6(self):
         self.appendText("6")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_7(self):
         self.appendText("7")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_8(self):
         self.appendText("8")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_9(self):
         self.appendText("9")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_0(self):
         self.appendText("0")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_add(self):
         self.appendText("+")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_sub(self):
         self.appendText("-")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_div(self):
         self.appendText("/")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_mul(self):
         self.appendText("*")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_sin(self):
         self.appendText("sin(")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_cos(self):
         self.appendText("cos(")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_del(self):
         self.clearText()
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_clear(self):
         self.delText()
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_pi(self):
         self.appendText("π")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_sqrt(self):
         self.appendText("√")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_fact(self):
         self.appendText("!")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_decimal(self):
         self.appendText(",")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_pow(self):
         self.appendText("^")
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     def button_eq(self):
         self.fade()
-        self.renderText() 
+        self.renderText()
         pass
 
     __text__ = ""
