@@ -1,14 +1,9 @@
 import sys
-from ui import Ui_ivsmath
-from PyQt5.QtWidgets import QWidget, QApplication
-from PyQt5.Qt import Qt
-from PyQt5.QtGui import QPen, QBrush
-from PyQt5 import QtGui
-from PyQt5.QtWidgets import QApplication, QMainWindow, QGraphicsScene, QGraphicsView, QGraphicsItem , QLineEdit
-from PyQt5.QtGui import QPen, QBrush, QFont, QColor, QTextCharFormat
-from PyQt5.Qt import Qt, QColor, pyqtSlot
-import asyncio
-import time
+from lib.ui import Ui_ivsmath
+from lib.validator import Validator
+from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QApplication
+from PyQt5.Qt import Qt, pyqtSlot
 from PyQt5.QtCore import QTimer
 
 
@@ -22,19 +17,6 @@ class CalculatorWindow(QWidget):
 
         self.changed_by_click = False
         self.__text = ''
-
-        transparentcolor = QColor()
-        #transparentcolor.setAlpha(0)
-        transparentcolor.cyan()
-        # pen = QPen()
-        # pen.setColor(transparentcolor)
-
-        self.deffont = QFont("Sans Serif")
-        self.deffont.setPixelSize(50)
-        self.deffont.setFamily("Sans Serif")
-
-        textformat = QTextCharFormat()
-        textformat.setFont(self.deffont)
 
         self.__fading_button = None
         self.__fading_button = ''  # contains string on display
@@ -58,40 +40,54 @@ class CalculatorWindow(QWidget):
         self.ui.pushButton_del.clicked.connect(self.button_del)
         self.ui.pushButton_sin.clicked.connect(self.button_sin)
         self.ui.pushButton_cos.clicked.connect(self.button_cos)
-        # nutno pridat tlacitko pro fact, a dat pryc +-
-        #self.ui.pushButton_fact.clicked.connect(self.button_fact)
+        self.ui.pushButton_fact.clicked.connect(self.button_fact)
         self.ui.pushButton_sqrt.clicked.connect(self.button_sqrt)
         self.ui.pushButton_pow.clicked.connect(self.button_pow)
         self.ui.pushButton_pi.clicked.connect(self.button_pi)
         self.ui.pushButton_eq.clicked.connect(self.button_eq)
         self.ui.pushButton_comma.clicked.connect(self.button_decimal)
-        # self.scene.clear()
-        # self.scene.addText(self.__text, self.deffont)
 
     @pyqtSlot()
     def fade(self):
-        #a = self.findChild(QWidget, self.sender().objectName()) -- takto sa dá tiež získať meno toho sendera XD
+        """
+        Fades the button after click.
+        """
         fading_button = self.sender()
         fading_button.setWindowOpacity(0.5)
         fading_button.setStyleSheet("background-color: #1a1a1a")
+        if fading_button.objectName() == 'pushButton_eq':
+            fading_button.setStyleSheet("background-color: #0171e3")
         QTimer.singleShot(75, lambda: self.unfade(fading_button))
 
     @pyqtSlot()
     def unfade(self, fading_button):
+        """
+        'Unfades' the button after click.
+
+        :param fading_button: Fading button.
+        """
         fading_button.setWindowOpacity(1)
         fading_button.setStyleSheet("")
 
     @pyqtSlot(str)
     def user_input(self, edited_text):
+        """
+        User input handler.
+
+        :param edited_text: Edited text
+        """
         if not self.changed_by_click:
-            #print(edited_text)
             self.fade_through_edit(self.check_edit(edited_text))
         else:
             self.changed_by_click = False
-        self.__text = edited_text  # get text
-        print('---' + self.__text)
+        self.__text = edited_text
 
     def fade_through_edit(self, button):
+        """
+        Fading effect from keyboard input.
+
+        :param button: Clicked button.
+        """
         if not button:  # button click also invokes signal Changed but we do not want this fade to do anything then
             return
         button.setWindowOpacity(0.5)
@@ -103,7 +99,6 @@ class CalculatorWindow(QWidget):
             return False  # in case more than 1 char was inserted at once do not fade
         if text.__len__() < self.__text.__len__():
             return self.ui.pushButton_del  # case more than 1 char was removed
-        print("here")
         for i in range(text.__len__()):
             try:
                 if text[i] != self.__text[i]:
@@ -111,7 +106,13 @@ class CalculatorWindow(QWidget):
             except IndexError:
                 return self.char_fsm(text[-1])
 
-    def char_fsm(self, char):  # finite state machine looking at char
+    def char_fsm(self, char):
+        """
+        Finite state machine looking at char.
+
+        :param char: Character that is checked
+        :return: Corresponding button.
+        """
         if char == '1':
             return self.ui.pushButton_1
         elif char == '2':
@@ -146,20 +147,17 @@ class CalculatorWindow(QWidget):
             return self.ui.pushButton_comma
         elif char == '^':
             return self.ui.pushButton_pow
-        elif char == '^':
-            return self.ui.pushButton_pow
         elif char == 'π':
             return self.ui.pushButton_pi
+        elif char == '!':
+            return self.ui.pushButton_fact
         else:  # invalid character
             return False
 
-
-        # elif char == '!':
-        #     return self.ui.pushButton_fact
-
-
-
     def renderText(self):
+        """
+        Renders a text to display.
+        """
         self.ui.display.setText(self.__text)
         self.ui.display.setFocus()
         self.__fading_button = self.sender()
@@ -265,10 +263,8 @@ class CalculatorWindow(QWidget):
         self.ui.display.backspace()
         self.ui.display.setFocus()
         self.fade()
-        pass
 
     def button_clear(self):
-        #self.delText()
         self.changed_by_click = True
         self.clearText()
         self.ui.display.setText(self.__text)
@@ -276,14 +272,12 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_pi(self):
-        #self.appendText("π")
         self.changed_by_click = True
         self.ui.display.insert('π')
         self.ui.display.setFocus()
         self.fade()
 
     def button_sqrt(self):
-        #self.appendText("√")
         self.changed_by_click = True
         self.ui.display.insert('√')
         self.ui.display.setFocus()
@@ -308,12 +302,12 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_eq(self):
-        # todo
         self.fade()
+        result = self.get_result()
         #self.renderText()
-        pass
 
     __text = ""
+
     def keyPressEvent(self, event):
         # if event.key() == Qt.Key_1:
         #     self.ui.pushButton_1.click()
@@ -369,28 +363,31 @@ class CalculatorWindow(QWidget):
         if event.key() == Qt.Key_Enter:   # tento nie je predefinovany -> funguje to normalne (faduje)
             self.ui.pushButton_eq.click()
             return
-
-
-        # self.scene.clear()
-        # self.scene.addText(self.__text, self.deffont)
-       # print(self.__text)
-
-    def appendText(self, str: str):
-        self.__text += str
+        if event.key() == Qt.Key_Return:
+            self.ui.pushButton_eq.click()
+            return
 
     def clearText(self):
+        """
+        Clears the calculator text.
+        """
         self.__text = ""
 
-    def delText(self):
-        if len(self.__text) == 0:
-            return
-        if len(self.__text) == 1:
-            self.clearText()
-            return
-        self.__text = self.__text[0:-1]
+    def get_result(self):
+        """
+        Gets the result of equation.
 
-    def parseText(self):
-        pass
+        :return: Equation result.
+        """
+        result = 0.0
+        text = self.__text
+        validator = Validator(text)
+        if validator.is_valid():
+            print('VALID')
+        else:
+            print('INVALID')
+
+        return result
 
 
 if __name__ == '__main__':

@@ -7,8 +7,35 @@
     background-color: #212121;
 }
 
+#display {
+    font-size: 50px;
+}
+
 QPushButton {
     background-color: #212121;
     color: #0180FF;
     border: none;
+}
+
+QPushButton[objectName="pushButton_eq"] {
+    background-color: #0180FF;
+    color: #212121;
+    border: none;
+}
+
+QPushButton[objectName="pushButton_eq"]:hover {
+    background-color: #0074ea;
+    color: #212121;
+    border: none;
+}
+
+QPushButton:hover {
+    background-color: #1d1d1d;
+}
+
+QLineEdit {
+    background: transparent;
+    font-family: "Sans Serif", Times, serif;
+    border: 0 solid black;
+    color: #aaa;
 }
