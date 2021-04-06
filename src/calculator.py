@@ -248,13 +248,15 @@ class CalculatorWindow(QWidget):
 
     def button_sin(self):
         self.changed_by_click = True
-        self.ui.display.insert('sin(')
+        self.ui.display.insert('sin()')
+        self.ui.display.setCursorPosition(self.ui.display.cursorPosition() - 1)
         self.ui.display.setFocus()
         self.fade()
 
     def button_cos(self):
         self.changed_by_click = True
-        self.ui.display.insert('cos(')
+        self.ui.display.insert('cos()')
+        self.ui.display.setCursorPosition(self.ui.display.cursorPosition() - 1)
         self.ui.display.setFocus()
         self.fade()
 

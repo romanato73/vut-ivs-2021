@@ -7,14 +7,23 @@
     background-color: #212121;
 }
 
-#display {
+QLineEdit {
+    background: transparent;
     font-size: 50px;
+    font-family: "Nunito Black", "Sans Serif", Times, serif;
+    border: 0 solid black;
+    color: #aaa;
+    padding: 0 10px;
 }
 
 QPushButton {
     background-color: #212121;
     color: #0180FF;
     border: none;
+}
+
+QPushButton:hover {
+    background-color: #1d1d1d;
 }
 
 QPushButton[objectName="pushButton_eq"] {
@@ -27,15 +36,4 @@ QPushButton[objectName="pushButton_eq"]:hover {
     background-color: #0074ea;
     color: #212121;
     border: none;
-}
-
-QPushButton:hover {
-    background-color: #1d1d1d;
-}
-
-QLineEdit {
-    background: transparent;
-    font-family: "Sans Serif", Times, serif;
-    border: 0 solid black;
-    color: #aaa;
 }
