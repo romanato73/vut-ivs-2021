@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QApplication
 from PyQt5.Qt import Qt, pyqtSlot
 from PyQt5.QtCore import QTimer
 
+from lib.expresionparser import MathExpresionParser
 
 class CalculatorWindow(QWidget):
     def __init__(self):
@@ -306,7 +307,8 @@ class CalculatorWindow(QWidget):
     def button_eq(self):
         self.fade()
         result = self.get_result()
-        #self.renderText()
+        
+        self.ui.display.setText(str(result).replace('.',','))
 
     __text = ""
 
@@ -386,8 +388,11 @@ class CalculatorWindow(QWidget):
         validator = Validator(text)
         if validator.is_valid():
             print('VALID')
+            nsp = MathExpresionParser()
+            result = nsp.eval(text)
         else:
             print('INVALID')
+        print(result)
 
         return result
 
