@@ -1,5 +1,6 @@
 import unittest
-import mathstuck.core as m
+import lib.mathstuck.mathcore as m
+import lib.MathParse.NumericStringParser
 
 
 class TestAdvancedOperations(unittest.TestCase):
