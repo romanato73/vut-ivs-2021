@@ -8,6 +8,7 @@ from PyQt5.QtCore import QTimer
 
 from lib.expresionparser import MathExpresionParser
 
+
 class CalculatorWindow(QWidget):
     def __init__(self):
         super(CalculatorWindow, self).__init__()
@@ -307,8 +308,13 @@ class CalculatorWindow(QWidget):
     def button_eq(self):
         self.fade()
         result = self.get_result()
-        
-        self.ui.display.setText(str(result).replace('.',','))
+
+        if str(result).endswith('.0'):
+            self.ui.display.setText(str(int(result)))
+        else:
+            self.ui.display.setText(str(result).replace('.', ','))
+
+        self.ui.display.setCursorPosition(0)
 
     __text = ""
 

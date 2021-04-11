@@ -89,7 +89,7 @@ class Validator:
                 closedParentheses += 1
 
             # Check if operator is not followed by another operator
-            if prevChar and (char in self.operators and prevChar in self.operators):
+            if prevChar and (char in self.operators and prevChar in self.operators) and prevChar != '!':
                 print('Operator is followed by another operator')
                 return False
 
