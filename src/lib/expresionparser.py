@@ -5,7 +5,7 @@ import operator
 import sys
 import re
 
-from .mathstuck import mathcore
+from mathstuck import mathcore
 
 
 class MathExpresionParser():
