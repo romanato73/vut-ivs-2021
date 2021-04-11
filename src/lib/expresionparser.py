@@ -11,7 +11,7 @@ import mathcore
 class MathExpresionParser():
     def __init__(self, ):
 
-        floatnumber = Regex(r"[+-]?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?!*")
+        floatnumber = Regex(r"[+-]?\d+(?:\,\d*)?(?:[eE][+-]?\d+)?!*")
         ident = Word(alphas, alphas + nums + '!'+ "_$")
 
         plus, minus, mult, div, factorial = map(Literal, "+-*/!")
@@ -19,6 +19,7 @@ class MathExpresionParser():
         addop = plus | minus
         multop = mult | div
         expop = Literal("^")
+        sqrtop = Literal('√')
         pi = CaselessKeyword("π")
 
         expr = Forward()
@@ -28,7 +29,7 @@ class MathExpresionParser():
         # 
 
         factor = Forward()
-        factor << atom + ZeroOrMore((expop + factor).setParseAction(self.pushFirst))
+        factor << atom + ZeroOrMore((expop | sqrtop  + factor).setParseAction(self.pushFirst))
 
         # factorialc = Forward()
         # factorialc << factor + ZeroOrMore((floatnumber + factorial).setParseAction(self.pushFirst))
@@ -58,7 +59,7 @@ class MathExpresionParser():
                     "*": mathcore.mul,
                     "/": mathcore.div,
                     "^": mathcore.exp,
-                    "!": mathcore.fact
+                    "√": mathcore.sqrt
                     }
         self.fn = {"sin": mathcore.sin,
                    "cos": mathcore.cos,
@@ -80,7 +81,7 @@ class MathExpresionParser():
         return val
 
     def evaluateStack(self, s):
-        # print(s)
+        print(s)
         op = s.pop()
         if op == 'unary -':
             return -1 * (self.evaluateStack(s))
@@ -88,6 +89,10 @@ class MathExpresionParser():
             op2 = self.evaluateStack(s)
             op1 = self.evaluateStack(s)
             return self.opn[op](op1, op2)
+        if op == '√':
+            op2 = self.evaluateStack(s)
+            op1 = self.evaluateStack(s)
+            return self.opn[op](op2, op1)
         elif op == "π":
             return mathcore.pi()  # 3.1415926535
         elif re.match('([+-]?\d*)!$', op):
@@ -98,19 +103,5 @@ class MathExpresionParser():
         elif op[0].isalpha():
             return 0
         else:
-            return float(op)
+            return float(op.replace(',','.'))
 
-
-"""test = [
-    "sin(10)+10*5-10",
-    "10+20+30+40",
-    "10!",
-    "sin(90)-sin(90)",
-    "10!-5"
-]
-for t in test:
-    nsp = MathExpresionParser()
-    result = nsp.eval(t)
-    print(result)
-    # 16.0
-    """
