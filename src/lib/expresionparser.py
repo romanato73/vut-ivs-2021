@@ -5,7 +5,7 @@ import operator
 import sys
 import re
 
-from mathstuck import mathcore
+import mathcore
 
 
 class MathExpresionParser():
@@ -56,8 +56,8 @@ class MathExpresionParser():
         self.opn = {"+": mathcore.add,
                     "-": mathcore.sub,
                     "*": mathcore.mul,
-                    "/": operator.truediv,
-                    "^": operator.pow,
+                    "/": mathcore.div,
+                    "^": mathcore.exp,
                     "!": mathcore.fact
                     }
         self.fn = {"sin": mathcore.sin,
