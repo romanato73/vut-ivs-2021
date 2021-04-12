@@ -20,6 +20,7 @@ class MathExpresionParser():
         multop = mult | div
         expop = Literal("^")
         sqrtop = Literal('√')
+        sqrex = expop | sqrtop
         pi = CaselessKeyword("π")
 
         expr = Forward()
@@ -29,7 +30,7 @@ class MathExpresionParser():
         # 
 
         factor = Forward()
-        factor << atom + ZeroOrMore((expop | sqrtop  + factor).setParseAction(self.pushFirst))
+        factor << atom + ZeroOrMore((sqrex + factor).setParseAction(self.pushFirst))
 
         # factorialc = Forward()
         # factorialc << factor + ZeroOrMore((floatnumber + factorial).setParseAction(self.pushFirst))
@@ -89,7 +90,7 @@ class MathExpresionParser():
             op2 = self.evaluateStack(s)
             op1 = self.evaluateStack(s)
             return self.opn[op](op1, op2)
-        if op == '√':
+        if op in '√^':
             op2 = self.evaluateStack(s)
             op1 = self.evaluateStack(s)
             return self.opn[op](op2, op1)
