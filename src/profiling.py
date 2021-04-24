@@ -1,5 +1,5 @@
 import sys
-import mathcore as math
+import lib.mathstuck as math
 
 
 def standard_deviation(numbers):

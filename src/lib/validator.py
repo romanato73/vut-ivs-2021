@@ -93,6 +93,16 @@ class Validator:
                 print('Operator is followed by another operator')
                 return False
 
+            # Factorial fix
+            if prevChar and prevChar == '!' and char.isnumeric():
+                print('Can not put number after factorial (operator is expected)')
+                return False
+
+            # Double factorial fix
+            if prevChar == '!' and prevChar == char:
+                print('Can not put factorial after factorial')
+                return False
+
             # Check if parentheses are not empty
             if prevChar and (char == ')' and prevChar == '('):
                 print('Empty parentheses')

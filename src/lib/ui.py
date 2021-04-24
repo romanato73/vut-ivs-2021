@@ -437,6 +437,7 @@ class Ui_ivsmath(object):
         self.display.setFixedWidth(400)
         self.display.setAlignment(Qt.AlignLeft)
         self.display.setCursorMoveStyle(Qt.VisualMoveStyle)
+        self.display.setAttribute(Qt.WA_MacShowFocusRect, False)  # MacOS fix blue border
         self.display.setFocus()
         self.display.move(0, 25)
         self.display.setObjectName("display")

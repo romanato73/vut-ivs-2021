@@ -1,5 +1,5 @@
 import unittest
-import mathstuck.core as m
+import lib.mathstuck.mathcore as m
 
 
 class TestBaseOperations(unittest.TestCase):

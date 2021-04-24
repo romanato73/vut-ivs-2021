@@ -1,11 +1,9 @@
 from __future__ import division
-from pyparsing import (Literal, CaselessLiteral, Word, Combine, Group, Optional,
+from pyparsing import (Literal, Word, Group, Optional,
                        ZeroOrMore, Forward, nums, alphas, oneOf, CaselessKeyword, Suppress,Regex )
-import operator
-import sys
 import re
 
-import mathcore
+import lib.mathstuck.mathcore as mathcore
 
 
 class MathExpresionParser():
@@ -104,5 +102,5 @@ class MathExpresionParser():
         elif op[0].isalpha():
             return 0
         else:
-            return float(op.replace(',','.'))
+            return float(op.replace(',', '.'))
 
