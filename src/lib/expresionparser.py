@@ -5,15 +5,16 @@ import re
 
 import lib.mathstuck.mathcore as mathcore
 
-"""Class for parsing math expresion
 
-"""
+class MathExpresionParser:
+    """
+    Class for parsing math expresion
+    """
 
-
-class MathExpresionParser():
     def __init__(self, ):
-        """Initial function. Prepare Literals and other expresion
-            """
+        """
+        Initial function. Prepare Literals and other expresion
+        """
         floatnumber = Regex(r"[+-]?\d+(?:\,\d*)?(?:[eE][+-]?\d+)?!*")
         ident = Word(alphas, alphas + nums + '!' + "_$")
 
@@ -53,7 +54,8 @@ class MathExpresionParser():
                    }
 
     def pushFirst(self, strg, loc, toks):
-        """Append exprStack for 1st element from toks.
+        """
+        Append exprStack for 1st element from toks.
 
         :param toks: elements for parse
         :param strg: string witch is now parsed
@@ -62,7 +64,8 @@ class MathExpresionParser():
         self.exprStack.append(toks[0])
 
     def pushUMinus(self, strg, loc, toks):
-        """Append exprStack for minus if number is negative.
+        """
+        Append exprStack for minus if number is negative.
 
         :param toks: number for parse
         :param strg: string witch is now parsed
@@ -73,7 +76,8 @@ class MathExpresionParser():
             self.exprStack.append('unary -')
 
     def eval(self, num_string, parseAll=True):
-        """Quantification of num_string.
+        """
+        Quantification of num_string.
 
         :param num_string: string with parsed numbers
 
@@ -86,7 +90,8 @@ class MathExpresionParser():
         return val
 
     def evaluateStack(self, s):
-        """Quantification of s by declared operation.
+        """
+        Quantification of s by declared operation.
 
         :param s: string witch is parsed
 
