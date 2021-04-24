@@ -10,7 +10,7 @@
 QLineEdit {
     background: transparent;
     font-size: 50px;
-    font-family: "Nunito Black", "Sans Serif", Times, serif;
+    font-family: "Nunito Black", "Menlo", sans-serif;
     border: 0 solid black;
     color: #aaa;
     padding: 0 10px;
