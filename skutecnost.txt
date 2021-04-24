@@ -1,1 +1,3 @@
-tento soubor bude obsahovat rozdil mezi planem projektu a skutecnosti
+Plán sa nám z veľkej časti podarilo dodržať.
+Jediné menšie komplikácie boli pri implementovaní samotnej
+funkcionality, keďže trebalo ošetriť veľa rôzných vecí.
