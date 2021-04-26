@@ -1,3 +1,16 @@
+
+
+# ########################################
+# Brief: Parser for user input in calculator
+# Project: Calculator
+# File: expresionparser.py
+# File Author/s: Vlk Jakub <xvlkja07(at)fit.vutbr.cz>
+# Project Authors: Stanislav Gabriš <xgabri18(at)fit.vutbr.cz>
+#                  Roman Országh <xorsza01(at)fit.vutbr.cz>
+#                  Jarolím Antonín <xjarol06(at)fit.vutbr.cz>
+# 			       Vlk Jakub <xvlkja07(at)fit.vutbr.cz>
+# ########################################
+
 from __future__ import division
 from pyparsing import (Literal, Word, Group, Optional,
                        ZeroOrMore, Forward, nums, alphas, oneOf, CaselessKeyword, Suppress,Regex )

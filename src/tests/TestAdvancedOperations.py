@@ -1,3 +1,14 @@
+# ########################################
+# Brief: Tests for advanced mathematical operations
+# Project: Calculator
+# File: TestAdvancedOperations.py
+# File Author/s: Stanislav Gabriš <xgabri18(at)fit.vutbr.cz>
+# Project Authors: Stanislav Gabriš <xgabri18(at)fit.vutbr.cz>
+#                  Roman Országh <xorsza01(at)fit.vutbr.cz>
+#                  Jarolím Antonín <xjarol06(at)fit.vutbr.cz>
+# 			       Vlk Jakub <xvlkja07(at)fit.vutbr.cz>
+# ########################################
+
 import unittest
 import lib.mathstuck.mathcore as m
 

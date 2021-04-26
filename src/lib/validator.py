@@ -1,9 +1,21 @@
+
+# ########################################
+# Brief: Class defining methods that check validity of user input
+# Project: Calculator
+# File: validator.py
+# File Author/s: Roman Országh <xorsza01(at)fit.vutbr.cz>
+# Project Authors: Stanislav Gabriš <xgabri18(at)fit.vutbr.cz>
+#                  Roman Országh <xorsza01(at)fit.vutbr.cz>
+#                  Jarolím Antonín <xjarol06(at)fit.vutbr.cz>
+# 			       Vlk Jakub <xvlkja07(at)fit.vutbr.cz>
+# ########################################
+
+
 class Validator:
     def __init__(self, text):
-        """
-        Initialize parser
+        """! Initialize parser
 
-        :param text: Text passed into parser
+        @param text: Text passed into parser
         """
         self.text = text
         self.valid = False
@@ -18,11 +30,10 @@ class Validator:
             self.valid = False
 
     def validate(self, text):
-        """
-        Validates text from user input
+        """! Validates text from user input
 
-        :param text: Text to validate
-        :return: True if text is valid otherwise false.
+        @param text: Text to validate
+        @return True if text is valid otherwise false.
         """
         index = 0
         comma = False
@@ -133,20 +144,18 @@ class Validator:
         return True
 
     def is_valid(self):
-        """
-        Returns valid status.
+        """! Returns valid status.
 
-        :return: True if user input is valid otherwise false.
+        @return: True if user input is valid otherwise false.
         """
         return self.valid
 
     def __is_valid_math_function(self, text, index):
-        """
-        Validates math functions (sin, cos)
+        """! Validates math functions (sin, cos)
 
-        :param text: Input from calculator
-        :param index: Current index
-        :return: True if math function is valid otherwise false.
+        @param text: Input from calculator
+        @param index: Current index
+        @return True if math function is valid otherwise false.
         """
         if index + 3 < len(text):
             function = str(text[index] + text[index + 1] + text[index + 2])

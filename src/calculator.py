@@ -1,3 +1,14 @@
+
+# ########################################
+# Brief: Main loop of program + class defining changes in GUI
+# Project: Calculator
+# File: calculator.py
+# Authors: Stanislav Gabriš <xgabri18(at)fit.vutbr.cz>
+#          Roman Országh <xorsza01(at)fit.vutbr.cz>
+#          Jarolím Antonín <xjarol06(at)fit.vutbr.cz>
+# 	       Vlk Jakub <xvlkja07(at)fit.vutbr.cz>
+# ########################################
+
 import sys
 from lib.ui import Ui_ivsmath
 from lib.validator import Validator
@@ -51,8 +62,7 @@ class CalculatorWindow(QWidget):
 
     @pyqtSlot()
     def fade(self):
-        """
-        Fades the button after click.
+        """! Fades the button after click.
         """
         fading_button = self.sender()
         fading_button.setWindowOpacity(0.5)
@@ -63,20 +73,18 @@ class CalculatorWindow(QWidget):
 
     @pyqtSlot()
     def unfade(self, fading_button):
-        """
-        'Unfades' the button after click.
+        """! 'Unfades' the button after click.
 
-        :param fading_button: Fading button.
+        @param fading_button: Fading button.
         """
         fading_button.setWindowOpacity(1)
         fading_button.setStyleSheet("")
 
     @pyqtSlot(str)
     def user_input(self, edited_text):
-        """
-        User input handler.
+        """! User input handler.
 
-        :param edited_text: Edited text
+        @param edited_text: Edited text
         """
         if not self.changed_by_click:
             self.fade_through_edit(self.check_edit(edited_text))
@@ -85,10 +93,9 @@ class CalculatorWindow(QWidget):
         self.__text = edited_text
 
     def fade_through_edit(self, button):
-        """
-        Fading effect from keyboard input.
+        """! Fading effect from keyboard input.
 
-        :param button: Clicked button.
+        @param button: Clicked button.
         """
         if not button:  # button click also invokes signal Changed but we do not want this fade to do anything then
             return
@@ -97,11 +104,10 @@ class CalculatorWindow(QWidget):
         QTimer.singleShot(75, lambda: self.unfade(button))
 
     def check_edit(self, text):
-        """
-        Inspects display text for changes and returns button that was pressed.
+        """! Inspects display text for changes and returns button that was pressed.
 
-        :param text: Text to be inspected for changes
-        :return: Button object representing pressed button.
+        @param text: Text to be inspected for changes
+        @return Button object representing pressed button.
         """
         if (text.__len__()-1) > self.__text.__len__():
             return False  # in case more than 1 char was inserted at once do not fade
@@ -115,11 +121,10 @@ class CalculatorWindow(QWidget):
                 return self.char_fsm(text[-1])
 
     def char_fsm(self, char):
-        """
-        Finite state machine looking at char.
+        """! Finite state machine looking at char.
 
-        :param char: Character that is checked
-        :return: Corresponding button.
+        @param char: Character that is checked
+        @return Corresponding button.
         """
         if char == '1':
             return self.ui.pushButton_1
@@ -163,16 +168,14 @@ class CalculatorWindow(QWidget):
             return False
 
     def renderText(self):
-        """
-        Renders a text to display.
+        """! Renders a text to display.
         """
         self.ui.display.setText(self.__text)
         self.ui.display.setFocus()
         self.__fading_button = self.sender()
 
     def button_1(self):
-        """
-        Button 1 click handler.
+        """! Button 1 click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('1')
@@ -180,8 +183,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_2(self):
-        """
-        Button 2 click handler.
+        """! Button 2 click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('2')
@@ -189,8 +191,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_3(self):
-        """
-        Button 3 click handler.
+        """! Button 3 click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('3')
@@ -198,8 +199,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_4(self):
-        """
-        Button 4 click handler.
+        """! Button 4 click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('4')
@@ -207,8 +207,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_5(self):
-        """
-        Button 5 click handler.
+        """! Button 5 click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('5')
@@ -216,8 +215,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_6(self):
-        """
-        Button 6 click handler.
+        """! Button 6 click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('6')
@@ -225,8 +223,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_7(self):
-        """
-        Button 7 click handler.
+        """! Button 7 click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('7')
@@ -234,8 +231,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_8(self):
-        """
-        Button 8 click handler.
+        """! Button 8 click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('8')
@@ -243,8 +239,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_9(self):
-        """
-        Button 9 click handler.
+        """! Button 9 click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('9')
@@ -252,8 +247,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_0(self):
-        """
-        Button 0 click handler.
+        """! Button 0 click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('0')
@@ -261,8 +255,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_add(self):
-        """
-        Button + click handler.
+        """! Button + click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('+')
@@ -270,8 +263,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_sub(self):
-        """
-        Button - click handler.
+        """! Button - click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('-')
@@ -279,8 +271,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_div(self):
-        """
-        Button / click handler.
+        """! Button / click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('/')
@@ -288,8 +279,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_mul(self):
-        """
-        Button * click handler.
+        """! Button * click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('*')
@@ -297,8 +287,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_sin(self):
-        """
-        Button sin click handler.
+        """! Button sin click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('sin()')
@@ -307,8 +296,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_cos(self):
-        """
-        Button cos click handler.
+        """! Button cos click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('cos()')
@@ -317,8 +305,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_del(self):
-        """
-        Button del click handler.
+        """! Button del click handler.
         """
         self.changed_by_click = True
         self.ui.display.backspace()
@@ -326,8 +313,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_clear(self):
-        """
-        Button clear click handler.
+        """! Button clear click handler.
         """
         self.changed_by_click = True
         self.clearText()
@@ -336,8 +322,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_pi(self):
-        """
-        Button pi click handler.
+        """! Button pi click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('π')
@@ -345,8 +330,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_sqrt(self):
-        """
-        Button sqrt click handler.
+        """! Button sqrt click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('√')
@@ -354,8 +338,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_fact(self):
-        """
-        Button ! click handler.
+        """! Button ! click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('!')
@@ -363,8 +346,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_decimal(self):
-        """
-        Button , click handler.
+        """! Button , click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert(',')
@@ -372,8 +354,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_pow(self):
-        """
-        Button ^ click handler.
+        """! Button ^ click handler.
         """
         self.changed_by_click = True
         self.ui.display.insert('^')
@@ -381,8 +362,7 @@ class CalculatorWindow(QWidget):
         self.fade()
 
     def button_eq(self):
-        """
-        Button = click handler.
+        """! Button = click handler.
         """
         self.fade()
         result = self.get_result()
@@ -397,11 +377,10 @@ class CalculatorWindow(QWidget):
     __text = ""
 
     def keyPressEvent(self, event):
-        """
-        Key press handler.
+        """! Key press handler.
 
-        :param event:
-        :return:
+        @param event: Event handle
+        @return
         """
         if event.key() == Qt.Key_Enter:
             self.ui.pushButton_eq.click()
@@ -411,16 +390,14 @@ class CalculatorWindow(QWidget):
             return
 
     def clearText(self):
-        """
-        Clears the calculator text.
+        """! Clears the calculator text.
         """
         self.__text = ""
 
     def get_result(self):
-        """
-        Gets the result of equation.
+        """! Gets the result of equation.
 
-        :return: Equation result.
+        @return Equation result.
         """
         result = 0.0
         text = self.__text

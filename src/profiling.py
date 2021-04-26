@@ -1,13 +1,26 @@
+
+
+# ########################################
+# Brief: File used for profiling
+# Project: Calculator
+# File: profiling.py
+# File Author/s: Roman Országh <xorsza01(at)fit.vutbr.cz>
+# Project Authors: Stanislav Gabriš <xgabri18(at)fit.vutbr.cz>
+#                  Roman Országh <xorsza01(at)fit.vutbr.cz>
+#                  Jarolím Antonín <xjarol06(at)fit.vutbr.cz>
+# 			       Vlk Jakub <xvlkja07(at)fit.vutbr.cz>
+# ########################################
+
+
 import sys
 import lib.mathstuck as math
 
 
 def standard_deviation(numbers):
-    """
-    Calculate the standard deviation from numbers.
+    """! Calculate the standard deviation from numbers.
 
-    :param numbers: Numbers that are passed from input
-    :return: Result of standard deviation.
+    @param numbers: Numbers that are passed from input
+    @return Result of standard deviation.
     """
     x = numbers
     N = len(numbers)
@@ -27,12 +40,11 @@ def standard_deviation(numbers):
 
 
 def arithmetic_mean(x, N):
-    """
-    Calculate the arithmetic mean
+    """! Calculate the arithmetic mean
 
-    :param x: List of 'x' numbers
-    :param N: Number of 'x' numbers
-    :return:
+    @param x: List of 'x' numbers
+    @param N: Number of 'x' numbers
+    @return
     """
     sum_x = 0
     for i in range(N):
