@@ -13,7 +13,7 @@
 
 
 import sys
-import lib.mathstuck as math
+import lib.mathstuck.mathcore as math
 
 
 def standard_deviation(numbers):
