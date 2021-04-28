@@ -22,7 +22,7 @@ DOCDIR=doc
 TOSERVER=toSERVER
 TOSERVERDIRS=$(DOCDIR) $(INSTALLDIR) $(REPODIR)
 TOIS=toIS
-TOEXCLUDE=.idea __pycache__ $(TURNINDIR) #directories which will not be submitted
+TOEXCLUDE=.idea __pycache__ odevzdani.txt $(TURNINDIR) #directories which will not be submitted
 
 #installer build
 PYINSTIGNORE=build
@@ -52,8 +52,12 @@ toserver:
 	cd .\$(TURNINDIR) & md $(TOSERVER) & cd .\$(TOSERVER) & md $(AUTHORS) & cd .\$(AUTHORS) & md $(TOSERVERDIRS)
 	-robocopy .. .\$(TURNINDIR)\$(TOSERVER)\$(AUTHORS)\$(REPODIR) /E /ZB /Z /XD $(TOEXCLUDE)
 tois:
-	cd .\$(TURNINDIR) & md $(TOIS) & cd .\$(TOIS) & md $(AUTHORS)
-	-robocopy .. .\$(TURNINDIR)\$(TOIS)\$(AUTHORS) /E /ZB /Z /XD $(TOEXCLUDE)
+	cd .\$(TURNINDIR) & md $(TOIS) & cd .\$(TOIS) & md $(AUTHORS) $(AUTHORS)\src
+	-robocopy .. .\$(TURNINDIR)\$(TOIS)\$(AUTHORS) odevzdani.txt /ZB /Z
+	-robocopy .. .\$(TURNINDIR)\$(TOIS)\$(AUTHORS) hodnoceni.txt /ZB /Z
+	-robocopy .. .\$(TURNINDIR)\$(TOIS)\$(AUTHORS) dokumentace.pdf /ZB /Z
+	-robocopy . .\$(TURNINDIR)\$(TOIS)\$(AUTHORS)\src /E /ZB /Z /XD $(TOEXCLUDE)
+
 docu: doc
 	-robocopy .\html .\$(TURNINDIR)\$(TOSERVER)\$(AUTHORS)\$(DOCDIR) /E /ZB /Z
 	del .\html /f /s /q & rmdir /s /q .\html

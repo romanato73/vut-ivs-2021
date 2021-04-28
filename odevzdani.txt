@@ -1,0 +1,13 @@
+Dátum: 28.4.2021
+Čas odovzdania: 
+
+Odovzdanie do IS:
+-súbor src (zdrojové súbory)
+-hodnoceni.txt
+-dokumentace.pdf (uživateľská príručka)
+-odevzdani.txt
+
+Odovzdanie na SERVER:
+-celý repozitár, tak ako je na GitHube (repo)
+-dokumentácia vygenerovaná pomocou nástroju Doxygen (doc)
+-inštálátor kalkulačky calcsetup.exe (install)
